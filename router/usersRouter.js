@@ -43,19 +43,7 @@ router.get("/get/count", function (req, res) {
     }
   });
 });
-router.post("/register", multerUploads, async function (req, res) {
-  if (!req.file) {
-    return res.send("Not image choosen");
-  }
-  if (req.file) {
-    const buffer = req.file.buffer;
-    const file = getFileBuffer(path.extname(req.file.originalname), buffer);
-
-    //upload file to clould
-    var image = await cloudinary.uploader.upload(file, { folder: "Linh" });
-    //get imageUrl
-    image = image.url;
-  }
+router.post("/register", async function (req, res) {
   let user = User({
     fullname: req.body.fullname,
     username: req.body.username,
@@ -64,7 +52,6 @@ router.post("/register", multerUploads, async function (req, res) {
     address: req.body.address,
     phone: req.body.phone,
     isAdmin: req.body.isAdmin,
-    image: image,
   });
   user
     .save()
@@ -105,12 +92,9 @@ router.post("/:id", multerUploads, async function (req, res) {
   }
   let updateUser = {
     fullname: req.body.fullname,
-    username: req.body.username,
-    passwordHash: bcrypt.hashSync(req.body.password, 10),
     sex: req.body.sex,
     address: req.body.address,
     phone: req.body.phone,
-    isAdmin: req.body.isAdmin,
     image: image,
   };
   User.findByIdAndUpdate(
