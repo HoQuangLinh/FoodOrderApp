@@ -77,7 +77,7 @@ router.post("/register", async function (req, res) {
     });
 });
 //update User by Id
-router.post("/:id", multerUploads, async function (req, res) {
+router.put("/:id", multerUploads, async function (req, res) {
   if (!req.file) {
     return res.send("Not image choosen");
   }
