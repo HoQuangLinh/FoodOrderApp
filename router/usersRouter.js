@@ -45,7 +45,7 @@ router.get("/get/count", function (req, res) {
 });
 router.post("/register", async function (req, res) {
   let user = User({
-    fullname: req.body.fullname,
+    email: req.body.email,
     username: req.body.username,
     passwordHash: bcrypt.hashSync(req.body.password, 10),
     sex: req.body.sex,
@@ -91,7 +91,7 @@ router.put("/:id", multerUploads, async function (req, res) {
     image = image.url;
   }
   let updateUser = {
-    fullname: req.body.fullname,
+    email: req.body.email,
     sex: req.body.sex,
     address: req.body.address,
     phone: req.body.phone,
