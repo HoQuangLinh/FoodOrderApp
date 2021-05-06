@@ -3,6 +3,7 @@ var uniqueValidator = require("mongoose-unique-validator");
 let user_Schema = mongoose.Schema({
   email: {
     type: String,
+    default: "Chưa có",
   },
   username: {
     type: String,
@@ -17,6 +18,7 @@ let user_Schema = mongoose.Schema({
   },
   address: {
     type: String,
+    default: "Chưa có",
   },
   phone: {
     type: String,
