@@ -77,7 +77,7 @@ router.post("/register", async function (req, res) {
     });
 });
 //update User by Id
-router.put("/:id", multerUploads, async function (req, res) {
+router.put("/avatar/:id", multerUploads, async function (req, res) {
   if (!req.file) {
     return res.send("Not image choosen");
   }
@@ -91,10 +91,6 @@ router.put("/:id", multerUploads, async function (req, res) {
     image = image.url;
   }
   let updateUser = {
-    email: req.body.email,
-    sex: req.body.sex,
-    address: req.body.address,
-    phone: req.body.phone,
     image: image,
   };
   User.findByIdAndUpdate(
