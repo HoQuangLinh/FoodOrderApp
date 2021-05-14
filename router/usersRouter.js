@@ -161,6 +161,25 @@ router.post("/userdetail/:id", function (req, res) {
     }
   );
 });
+
+//update address for user
+router.post("/updateAddress/:id", function (req, res) {
+  let updatedUser = {
+    address: req.body.address,
+  };
+  User.findByIdAndUpdate(
+    req.params.id,
+    updatedUser,
+    { new: true },
+    function (err, doc) {
+      if (err) {
+        res.status(500).send(err);
+      } else {
+        res.status(200).send(doc);
+      }
+    }
+  );
+});
 // login by username and password
 router.post("/login", async function (req, res) {
   let user = await User.findOne({ username: req.body.username });
