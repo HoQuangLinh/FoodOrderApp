@@ -106,6 +106,61 @@ router.put("/avatar/:id", multerUploads, async function (req, res) {
     }
   );
 });
+
+router.post("/imageBackground/:id", multerUploads, async function (req, res) {
+  if (!req.file) {
+    return res.send("Not image choosen");
+  }
+  if (req.file) {
+    const buffer = req.file.buffer;
+    const file = getFileBuffer(path.extname(req.file.originalname), buffer);
+
+    //upload file to clould
+    var imageBackground = await cloudinary.uploader.upload(file, {
+      folder: "Linh",
+    });
+    //get imageUrl
+    imageBackground = imageBackground.url;
+  }
+  let updateUser = {
+    imageBackground: imageBackground,
+  };
+  User.findByIdAndUpdate(
+    req.params.id,
+    updateUser,
+    { new: true },
+    function (err, doc) {
+      if (err) {
+        res.status(500).send(err);
+      } else {
+        res.status(200).send(doc);
+      }
+    }
+  );
+});
+
+router.post("/userdetail/:id", function (req, res) {
+  let updatedUser = {
+    fullname: req.body.fullname,
+    email: req.body.email,
+    sex: req.body.sex,
+    address: req.body.address,
+    phone: req.body.phone,
+    birthday: req.body.birthday,
+  };
+  User.findByIdAndUpdate(
+    req.params.id,
+    updatedUser,
+    { new: true },
+    function (err, doc) {
+      if (err) {
+        res.status(500).send(err);
+      } else {
+        res.status(200).send(doc);
+      }
+    }
+  );
+});
 // login by username and password
 router.post("/login", async function (req, res) {
   let user = await User.findOne({ username: req.body.username });

@@ -30,6 +30,16 @@ let user_Schema = mongoose.Schema({
   image: {
     type: String,
   },
+  imageBackground: {
+    type: String,
+  },
+  birthday: {
+    type: Date,
+    default: Date.now,
+  },
+  fullname: {
+    type: String,
+  },
 });
 // Apply the uniqueValidator plugin to userSchema.
 user_Schema.plugin(uniqueValidator);
