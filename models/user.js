@@ -34,8 +34,7 @@ let user_Schema = mongoose.Schema({
     type: String,
   },
   birthday: {
-    type: Date,
-    default: Date.now,
+    type: String,
   },
   fullname: {
     type: String,
