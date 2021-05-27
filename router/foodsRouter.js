@@ -27,7 +27,7 @@ router.get("/", async function (req, res) {
     }
   }
 
-  let listFoods = await Food.find(filter);
+  let listFoods = await Food.find(filter).populate("category");
 
   res.send(listFoods);
 });
