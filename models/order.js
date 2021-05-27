@@ -12,7 +12,10 @@ let orderSchema = mongoose.Schema({
     type: String,
     default: "",
   },
-
+  status: {
+    type: String,
+    default: "",
+  },
   totalPrice: {
     type: Number,
     default: 0,

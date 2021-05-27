@@ -112,7 +112,7 @@ router.post("/", async function (req, res) {
 });
 
 //update the status
-router.put("/:id", function (req, res) {
+router.put("/updateStatus/:id", function (req, res) {
   Order.findByIdAndUpdate(
     req.params.id,
     { status: req.body.status },
