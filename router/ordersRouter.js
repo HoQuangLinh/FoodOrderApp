@@ -6,7 +6,12 @@ const { Order_Item } = require("../models/order_item");
 
 //get listOrders
 router.get("/", async function (req, res) {
-  const listOrders = await Order.find().populate("user", "name email");
+  const listOrders = await Order.find()
+    .populate("user", "name email phone")
+    .populate({
+      path: "orderItems",
+      populate: { path: "food" },
+    });
   res.send(listOrders);
 });
 //get Order by id
