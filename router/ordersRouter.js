@@ -7,7 +7,7 @@ const { Order_Item } = require("../models/order_item");
 //get listOrders
 router.get("/", async function (req, res) {
   const listOrders = await Order.find()
-    .populate("user", "name email phone")
+    .populate("user", "fullname email phone  exponentPushToken")
     .populate({
       path: "orderItems",
       populate: { path: "food" },

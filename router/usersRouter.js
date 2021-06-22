@@ -147,6 +147,7 @@ router.post("/userdetail/:id", function (req, res) {
     address: req.body.address,
     phone: req.body.phone,
     birthday: req.body.birthday,
+    exponentPushToken: req.body.exponentPushToken,
   };
   User.findByIdAndUpdate(
     req.params.id,

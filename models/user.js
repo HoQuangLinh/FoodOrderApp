@@ -39,6 +39,9 @@ let user_Schema = mongoose.Schema({
   fullname: {
     type: String,
   },
+  exponentPushToken: {
+    type: String,
+  },
 });
 // Apply the uniqueValidator plugin to userSchema.
 user_Schema.plugin(uniqueValidator);
