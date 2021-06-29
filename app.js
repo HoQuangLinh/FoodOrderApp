@@ -40,6 +40,8 @@ app.use(
       { url: /\/api\/foods.*/, methods: ["GET"] },
       "/api/users/login",
       "/api/users/register",
+      "/api/users/resetPassword",
+      "/api/users/changePasswordWithAuthenEmail",
     ],
   })
 );

@@ -25,7 +25,7 @@ let orderSchema = mongoose.Schema({
     ref: User,
     required: true,
   },
-  dateOrderd: {
+  dateOrdered: {
     type: Date,
     default: Date.now,
   },
