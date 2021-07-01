@@ -249,7 +249,6 @@ router.post("/changePasswordWithAuthenEmail", async function (req, res) {
       if (err) {
         res.status(500).send(err);
       } else {
-        console.log(count);
         countAuthen = count;
       }
     }
@@ -324,7 +323,12 @@ router.post("/login", async function (req, res) {
         expiresIn: 86400,
       }
     );
-    res.status(200).send({ auth: true, userID: user.id, token: token });
+    res.status(200).send({
+      auth: true,
+      userID: user.id,
+      token: token,
+      isAdmin: user.isAdmin,
+    });
   } else {
     res.status(400).send("Mật khẩu không chính xác");
   }
